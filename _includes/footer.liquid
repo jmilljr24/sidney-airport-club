@@ -3,15 +3,19 @@
     <div class="relative px-4 sm:px-8 lg:px-12 border-t border-gray-100 pt-10 pb-16">
       <div class="mx-auto max-w-2xl lg:max-w-5xl">
         <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <div class="flex gap-6 text-sm font-medium text-gray-800">
+          <div class="grid grid-cols-3 gap-6 text-sm font-medium text-gray-500">
             {% for link in site.data.navigation_links %}
               {% if link.href %}
-                <a href="{{ link.href }}" class="transition hover:text-primary-600">{{ link.title }}</a>
+                <a href="{{ link.href }}" class="transition hover:text-primary">{{ link.title }}</a>
               {% else %}
-                <a href="{% link {{ link.path }} %}" class="transition hover:text-primary-600">{{ link.title }}</a>
+                <a href="{% link {{ link.path }} %}" class="transition hover:text-primary">{{ link.title }}</a>
               {% endif %}
             {% endfor %}
           </div>
+          <span class="text-gray-700 font-medium">
+           199 River St.
+           Sidney, NY 13838
+           </span>
           <p class="text-sm text-gray-500">&copy; {{ "now" | date: "%Y" }} Sidney Airport Club. All rights reserved.</p>
         </div>
       </div>
