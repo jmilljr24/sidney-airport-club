@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const el = document.getElementById("metar");
   try {
-    const res = await fetch("/api/metar");
+    const res = await fetch("/metar");
     console.log(res);
     const data = await res.json();
     console.log(data);
