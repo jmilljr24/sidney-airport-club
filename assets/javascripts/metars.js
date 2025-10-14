@@ -6,16 +6,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data = await res.json();
     console.log(data);
 
-    const temp = data.temp || "N/A";
-    const ceiling = data.ceiling || "N/A";
-    const wind = data.currently || "N/A";
-
     el.innerHTML = `
       <div class="text-gray-800 space-y-2">
         <p class="font-semibold text-lg">${data.metar}</p>
-        <p class="text-sm">Temp: ${temp}</p>
-        <p class="text-sm">Ceiling: ${ceiling}</p>
-        <p class="text-sm">Wind: ${wind}</p>
       </div>
     `;
   } catch (err) {
