@@ -1,8 +1,8 @@
 ---
 layout: default
-title: About
+title: Pilot Info
 description: Sidney Airport is located in Central New York
-# permalink: /about
+permalink: /pilot
 ---
 
 <div
@@ -28,3 +28,28 @@ description: Sidney Airport is located in Central New York
     loading="lazy"
   ></iframe>
 </div>
+
+
+<div id="metar" class="p-4 bg-gray-50 rounded-xl border">
+  <p class="text-sm text-gray-600">Loading current METAR for N23...</p>
+</div>
+
+<script>
+  async function loadMetar() {
+    const el = document.getElementById("metar");
+    try {
+      const res = await fetch("/metar");
+      const data = await res.json();
+      el.innerHTML = `
+      <div class="text-gray-800">
+        <p class="font-semibold">Sidney Airport (N23)</p>
+        <p class="text-lg font-mono">${data.metar}</p>
+      </div>
+    `;
+    } catch (err) {
+      console.error(err);
+      el.innerHTML = "<p class='text-red-600'>Failed to load METAR data.</p>";
+    }
+  }
+  loadMetar();
+</script>
