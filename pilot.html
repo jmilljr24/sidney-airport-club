@@ -28,22 +28,36 @@ permalink: /pilot
     loading="lazy"
   ></iframe>
 </div>
+<div
+  class="max-w-xl mx-auto mt-8 p-6 bg-white rounded-2xl shadow-lg border border-gray-200"
+>
+  <h1 class="text-2xl font-bold mb-4 text-center">
+    Sidney Airport (N23) Pilot Info
+  </h1>
 
-
-<div id="metar" class="p-4 bg-gray-50 rounded-xl border">
-  <p class="text-sm text-gray-600">Loading current METAR for N23...</p>
+  <div id="metar" class="p-4 bg-gray-50 rounded-xl border text-center">
+    <p class="text-gray-500">Loading METAR...</p>
+  </div>
 </div>
 
 <script>
   async function loadMetar() {
     const el = document.getElementById("metar");
     try {
-      const res = await fetch("/metar");
+      const res = await fetch("/api/metar"); // calls the Functions endpoint
       const data = await res.json();
+
+      // Optionally, you can also fetch temp, ceiling, wind if needed
+      const temp = data.temp || "N/A";
+      const ceiling = data.ceiling || "N/A";
+      const wind = data.currently || "N/A";
+
       el.innerHTML = `
-      <div class="text-gray-800">
-        <p class="font-semibold">Sidney Airport (N23)</p>
-        <p class="text-lg font-mono">${data.metar}</p>
+      <div class="text-gray-800 space-y-2">
+        <p class="font-semibold text-lg">${data.metar}</p>
+        <p class="text-sm">Temperature: ${temp}</p>
+        <p class="text-sm">Ceiling: ${ceiling}</p>
+        <p class="text-sm">Wind: ${wind}</p>
       </div>
     `;
     } catch (err) {
@@ -51,5 +65,6 @@ permalink: /pilot
       el.innerHTML = "<p class='text-red-600'>Failed to load METAR data.</p>";
     }
   }
+
   loadMetar();
 </script>
