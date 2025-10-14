@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const el = document.getElementById("metar");
   try {
     const res = await fetch("/api/metar");
+    console.log(res);
     const data = await res.json();
+    console.log(data);
 
     const temp = data.temp || "N/A";
     const ceiling = data.ceiling || "N/A";
