@@ -27,7 +27,11 @@ module.exports = {
     "./*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#002856",
+      },
+    },
   },
   plugins: [],
 };
