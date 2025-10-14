@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US" class="h-full antialiased">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}?v={{ site.time | date: "%s" }}">
+    <!-- <script src="{{ "/assets/javascripts/toggler.js" | relative_url }}"></script> -->
+  </head>
+  <body class="flex h-full bg-gray-50">
+    <div class="flex w-full">
+      <div class="fixed inset-0 flex justify-center sm:px-8">
+        <div class="flex w-full max-w-7xl lg:px-8">
+          <div class="w-full bg-white ring-1 ring-gray-100"></div>
+        </div>
+      </div>
+      <div class="relative flex w-full flex-col items-center">
+        {% include header.liquid %}
+        <main class="flex justify-self-center max-w-6xl ">
+          {{ content }}
+        </main>
+        {% include footer.liquid %}
+      </div>
+    </div>
+  </body>
+</html>

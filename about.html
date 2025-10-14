@@ -1,0 +1,43 @@
+---
+layout: default
+title: About
+description: Sidney Airport is located in Central New York
+# permalink: /about
+---
+
+<div
+  class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12"
+>
+  <div class="lg:px-20">
+    <div class="max-w-[250px] px-2.5 lg:max-w-[300px]">
+      <figure>
+        <img
+          src="/assets/images/logo-no-bg.png"
+          width="300"
+          height="300"
+          alt="Joe Masilotti"
+          class="rounded-2xl bg-white object-cover shadow-md"
+        />
+        <figcaption class="sr-only">Sidney Airport</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="lg:row-span-2">
+    <h1 class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl">
+      <!-- <span class="text-primary-600">N23</span> -->
+    </h1>
+    <p class="mt-6 text-2xl text-gray-600 font-medium">
+      {{ page.description }}
+    </p>
+    <div class="mt-6 flex gap-6"></div>
+  </div>
+
+  <img
+    src="{{ '/assets/images/sidney_building.jpg' | relative_url }}"
+    alt="Logo"
+  />
+</div>
+
+<div class="mt-16 md:mt-20 -mx-4">
+  <div class="grid lg:grid-cols-3 lg:justify-center gap-8 py-4"></div>
+</div>
