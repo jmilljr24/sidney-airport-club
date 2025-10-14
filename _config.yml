@@ -4,6 +4,7 @@ title: "Sidney Airport Club"
 
 plugins:
   - jekyll-postcss
+  - jekyll-inline-svg
 
 postcss:
   cache: false
