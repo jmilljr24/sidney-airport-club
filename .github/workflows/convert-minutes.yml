@@ -1,6 +1,9 @@
 name: Convert Minutes PR Workflow
 
-# Trigger on PRs that modify .docs files
+permissions:
+  contents: write
+
+# Trigger on PRs that modify .docx files
 on:
   pull_request:
     paths:
