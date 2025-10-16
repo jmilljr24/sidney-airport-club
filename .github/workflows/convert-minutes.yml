@@ -1,0 +1,62 @@
+name: Convert Minutes PR Workflow
+
+# Trigger on PRs that modify .docs files
+on:
+  pull_request:
+    paths:
+      - "_minutes/**.docx"
+
+jobs:
+  convert_minutes:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the pull request branch
+      - name: Checkout PR branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      # 2. Install Pandoc
+      - name: Install Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      # 3. Convert DOCS to Markdown only if it doesn't exist
+      - name: Convert DOCS to Markdown if missing
+        run: |
+          mkdir -p _includes/minutes
+          mkdir -p _meetings
+          for file in _minutes/*.docx; do
+            filename=$(basename "$file" .docs)
+            markdown_file="_includes/minutes/${filename}.md"
+            meeting_file="_meetings/${filename}.md"
+
+            # Only convert if the markdown doesn't exist
+            if [ ! -f "$markdown_file" ]; then
+              echo "Converting $file → $markdown_file"
+              pandoc "$file" -f docx -t gfm -o "$markdown_file"
+
+              # Create or update meeting file with front matter
+              existing_content=""
+              if [ -f "$meeting_file" ]; then
+                existing_content=$(sed '1,/^---$/d' "$meeting_file")
+              fi
+
+              {
+                echo "---"
+                echo "date: ${filename}"
+                echo "minutes_include: /minutes/${filename}.md"
+                echo "---"
+                echo "$existing_content"
+              } > "$meeting_file"
+            else
+              echo "$markdown_file already exists, skipping conversion."
+            fi
+          done
+
+      # 4. Commit changes back to the PR branch
+      - name: Commit changes to PR branch
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Add new converted minutes and meeting files"
+          branch: ${{ github.head_ref }}
