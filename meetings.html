@@ -6,9 +6,7 @@ title: Meetings
 <div class="max-w-6xl mx-auto px-4 py-8">
   <header class="mb-12 text-center">
     <h1 class="text-4xl font-bold text-gray-900 mb-4">Meetings</h1>
-    <p class="text-xl text-gray-600">
-      Upcoming events and past meeting minutes
-    </p>
+    <p class="text-xl text-gray-600">Upcoming and past meetings</p>
   </header>
 
   <!-- Upcoming Meetings -->
@@ -32,7 +30,8 @@ title: Meetings
               {{ meeting.date | date: "%B %d, %Y" }}
             </div>
             <div class="text-sm text-gray-600 mb-1">
-              ⏰ {{ meeting.date | date: "%I:%M %p" }}
+              ⏰ Noon
+              <!-- {{ meeting.date | date: "%I:%M %p" }} -->
             </div>
             {% if meeting.location %}
             <div class="text-sm text-gray-600">📍 {{ meeting.location }}</div>
