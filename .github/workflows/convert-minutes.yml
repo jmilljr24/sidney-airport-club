@@ -24,13 +24,14 @@ jobs:
       - name: Install Pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
-      # 3. Convert DOCS to Markdown only if it doesn't exist
-      - name: Convert DOCS to Markdown if missing
+      # 3. Convert DOCX to Markdown only if it doesn't exist
+      - name: Convert DOCX to Markdown if missing
         run: |
           mkdir -p _includes/minutes
           mkdir -p _meetings
           for file in _minutes/*.docx; do
-            filename=$(basename "$file" .docs)
+            # Strip the .docx extension correctly
+            filename=$(basename "$file" .docx)
             markdown_file="_includes/minutes/${filename}.md"
             meeting_file="_meetings/${filename}.md"
 
