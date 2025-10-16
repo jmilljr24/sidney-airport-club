@@ -205,3 +205,18 @@ title: "Home"
     </div>
   </a>
 </div>
+
+{% assign upcoming_meeting = site.meetings | where_exp: "m", "m.date >
+site.time" | sort: "date" | first %} {% if upcoming_meeting %}
+<div class="p-4 rounded-xl bg-gray-100">
+  <h2 class="text-xl font-bold">Next Meeting</h2>
+  <p>
+    <strong>{{ upcoming_meeting.date | date: "%B %d, %Y at %I:%M %p" }}</strong>
+  </p>
+  <p>{{ upcoming_meeting.location }}</p>
+  <p>{{ upcoming_meeting.agenda }}</p>
+  <a href="{{ upcoming_meeting.url }}" class="text-blue-600 hover:underline"
+    >View details</a
+  >
+</div>
+{% endif %}

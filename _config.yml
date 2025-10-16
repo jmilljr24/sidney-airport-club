@@ -1,5 +1,3 @@
-url: "sidneyairportclub.org"
-baseurl: ""
 title: "Sidney Airport Club"
 
 plugins:
@@ -8,6 +6,18 @@ plugins:
 
 postcss:
   cache: false
+
+collections:
+  meetings:
+    output: true
+    permalink: /meetings/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "meetings"
+    values:
+      layout: "meeting"
 
 exclude:
   - package.json
