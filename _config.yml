@@ -12,6 +12,8 @@ collections:
     output: true
     permalink: /meetings/:path/
 
+future: true
+
 defaults:
   - scope:
       path: ""
