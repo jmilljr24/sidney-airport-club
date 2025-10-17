@@ -5,35 +5,59 @@ description: Sidney Airport is located in Central New York
 permalink: /pilot
 ---
 
-<div
-  class="max-w-sm mx-auto bg-white border border-gray-200 rounded-2xl shadow-md m-10 p-6"
->
-  <h2 class="text-lg font-semibold text-gray-800 mb-2">Airport Manager</h2>
-  <p class="text-gray-700 font-medium">Charles Washburn</p>
-  <p class="text-gray-600 mt-2">199 River St<br />Sidney, NY 13838</p>
-  <p class="text-gray-600 mt-3">
-    📞
-    <a href="tel:6075612346" class="text-blue-600 hover:underline"
-      >607-561-2346</a
+<div class="flex flex-col items-center">
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl justify-self-center gap-6 mt-6"
+  >
+    <div
+      class="w-80 min-h-48 bg-white border border-gray-200 rounded-2xl shadow-md p-6"
     >
-  </p>
-</div>
+      <h2 class="text-xl font-bold mb-4 text-center">Current Conditions</h2>
 
-<div
-  class="lg:hidden m-8 p-6 bg-white rounded-2xl shadow-lg border border-gray-200"
->
-  <h1 class="text-2xl font-bold mb-4 text-center">Current Conditions</h1>
+      <div id="metar" class="p-4 bg-gray-50 rounded-xl border text-center">
+        <p class="text-gray-500">Loading METAR...</p>
+      </div>
+    </div>
 
-  <div id="metar" class="p-4 bg-gray-50 rounded-xl border text-center">
-    <p class="text-gray-500">Loading METAR...</p>
+    <div
+      class="w-80 min-h-48 bg-white border border-gray-200 rounded-2xl shadow-md p-6"
+    >
+      <h2 class="text-xl font-bold mb-4 text-center">Ammenities</h2>
+      <ul class="list-disc pl-4">
+        <li class="text-gray-700 font-medium">Self Serve Fuel (Avgas/Jet-A)</li>
+        <li class="text-gray-700 font-medium">24 Hour Lounge</li>
+        <ul class="">
+          <li class="text-gray-700 font-light">- Free Wifi</li>
+          <li class="text-gray-700 font-light">- Restrooms</li>
+          <li class="text-gray-700 font-light">- Coffee/Beverages ($1)</li>
+        </ul>
+        <li class="text-gray-700 font-medium">Local Taxi Available</li>
+      </ul>
+    </div>
+    <div
+      class="w-80 min-h-48 bg-white border border-gray-200 rounded-2xl shadow-md p-6"
+    >
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">Airport Manager</h2>
+      <p class="text-gray-700 font-medium">Charles Washburn</p>
+      <p class="text-gray-600 mt-2">199 River St<br />Sidney, NY 13838</p>
+      <p class="text-gray-600 mt-3">
+        📞
+        <a href="tel:6075612346" class="text-blue-600 hover:underline"
+          >607-561-2346</a
+        >
+      </p>
+    </div>
   </div>
-</div>
-<div class="relative min-h-[1400px] p-5 ml-20 hidden lg:block">
-  <iframe
-    src="https://online.saiawos.com/N23/ios/display.html"
-    class="absolute top-0 left-0 w-full h-full"
-    title="SAIAWOS Weather Display"
-    frameborder="0"
-    loading="lazy"
-  ></iframe>
+
+  <div
+    class="relative min-h-[1400px] w-full ml-48 xl:ml-64 mt-10 p-5 hidden lg:block"
+  >
+    <iframe
+      src="https://online.saiawos.com/N23/ios/display.html"
+      class="absolute top-0 left-0 w-full h-full"
+      title="SAIAWOS Weather Display"
+      frameborder="0"
+      loading="lazy"
+    ></iframe>
+  </div>
 </div>
