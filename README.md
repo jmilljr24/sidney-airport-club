@@ -4,7 +4,7 @@ A Jekyll static site deployed to Cloudflare Pages.
 
 ## Prerequisites
 
-- Ruby 4.0.1
+- Ruby 3.4.4
 - Node.js
 - npm
 
