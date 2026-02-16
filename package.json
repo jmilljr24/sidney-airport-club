@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/main.css -o ./assets/css/main.css",
+    "build": "npm run build:css && bundle exec jekyll build"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
     "cssnano": "^5.1.8",
