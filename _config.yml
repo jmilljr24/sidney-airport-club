@@ -1,11 +1,7 @@
 title: "Sidney Airport Club"
 
 plugins:
-  - jekyll-postcss
   - jekyll-inline-svg
-
-postcss:
-  cache: false
 
 collections:
   meetings:
@@ -26,3 +22,4 @@ exclude:
   - postcss.config.js
   - tailwind.config.js
   - package-lock.json
+  - assets/css/tailwind-input.css
