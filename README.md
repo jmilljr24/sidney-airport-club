@@ -17,6 +17,9 @@ bundle install
 
 # Build the site
 npm run build
+
+# Run local server with auto-reload
+bundle exec jekyll serve --livereload
 ```
 
 The pre-commit hook automatically builds CSS before each commit.
