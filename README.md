@@ -2,6 +2,10 @@
 
 A Jekyll static site deployed to Cloudflare Pages.
 
+## Adding Meeting Minutes
+
+See [Adding Meeting Minutes](docs/add-meeting-minutes.md) for a guide on how to add minutes via GitHub.
+
 ## Prerequisites
 
 - Ruby 3.4.4
