@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build:css": "tailwindcss -i ./assets/css/main.css -o ./assets/css/main.css",
+    "build:css": "tailwindcss -i ./assets/css/tailwind-input.css -o ./assets/css/main.css",
     "build": "npm run build:css && bundle exec jekyll build"
   },
   "devDependencies": {
