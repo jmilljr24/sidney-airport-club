@@ -20,6 +20,7 @@ module.exports = {
     "./_drafts/**/*.html",
     "./_includes/**/*.html",
     "./_includes/**/*.liquid",
+    "./_includes/*.liquid",
     "./_layouts/**/*.html",
     "./_layouts/**/*.liquid",
     "./_posts/*.md",
@@ -33,5 +34,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
