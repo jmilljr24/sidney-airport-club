@@ -24,37 +24,50 @@ jobs:
       - name: Install Pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
-      # 3. Convert DOCX to Markdown only if it doesn't exist
-      - name: Convert DOCX to Markdown if missing
+      # 3. Convert DOCX to Markdown and update the matching meeting file
+      - name: Convert DOCX to Markdown and update meetings
         run: |
           mkdir -p _includes/minutes
           mkdir -p _meetings
           for file in _minutes/*.docx; do
-            # Strip the .docx extension correctly
+            # Strip the .docx extension
             filename=$(basename "$file" .docx)
-            markdown_file="_includes/minutes/${filename}.md"
-            meeting_file="_meetings/${filename}.md"
 
-            # Only convert if the markdown doesn't exist
-            if [ ! -f "$markdown_file" ]; then
-              echo "Converting $file → $markdown_file"
-              pandoc "$file" -f docx -t gfm -o "$markdown_file"
+            # Normalize the name to YYYY-MM-DD (underscores or compact dates are converted)
+            normalized=$(echo "$filename" | tr '_' '-')
+            if [[ "$normalized" =~ ^([0-9]{4})([0-9]{2})([0-9]{2})$ ]]; then
+              normalized="${BASH_REMATCH[1]}-${BASH_REMATCH[2]}-${BASH_REMATCH[3]}"
+            fi
 
-              # Create or update meeting file with front matter
-              existing_content=""
-              if [ -f "$meeting_file" ]; then
-                existing_content=$(sed '1,/^---$/d' "$meeting_file")
+            markdown_file="_includes/minutes/${normalized}.md"
+            meeting_file="_meetings/${normalized}.md"
+
+            echo "Converting $file → $markdown_file"
+            pandoc "$file" -f docx -t gfm -o "$markdown_file"
+
+            # Create or update the meeting file, preserving any existing content
+            existing_content=""
+            if [ -f "$meeting_file" ]; then
+              existing_content=$(sed '1,/^---$/d' "$meeting_file")
+            fi
+
+            {
+              echo "---"
+              echo "date: ${normalized}"
+              echo "minutes_include: /minutes/${normalized}.md"
+              echo "---"
+              echo "$existing_content"
+            } > "$meeting_file"
+
+            # Keep a single source docx per meeting date (rename to normalized name)
+            if [ "$filename" != "$normalized" ]; then
+              target="_minutes/${normalized}.docx"
+              if [ -f "$target" ]; then
+                echo "Removing duplicate source $file (${normalized}.docx already exists)"
+                rm "$file"
+              else
+                mv "$file" "$target"
               fi
-
-              {
-                echo "---"
-                echo "date: ${filename}"
-                echo "minutes_include: /minutes/${filename}.md"
-                echo "---"
-                echo "$existing_content"
-              } > "$meeting_file"
-            else
-              echo "$markdown_file already exists, skipping conversion."
             fi
           done
 

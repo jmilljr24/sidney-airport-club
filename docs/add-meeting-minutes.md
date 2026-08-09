@@ -12,7 +12,7 @@ Click the **"Add file"** button, then select **"Upload files"**.
 
 ### 3. Choose Your File
 
-Drag and drop or select your `.docx` file. The file must be named using the date format `YYYY-MM-DD.docx` (e.g., `2026-02-16.docx`).
+Drag and drop or select your `.docx` file. The file should be named using the date format `YYYY-MM-DD.docx` (e.g., `2026-02-16.docx`). Underscore (`2026_02_16.docx`) and compact (`20260216.docx`) formats are also accepted — the automated process normalizes them to `YYYY-MM-DD` automatically.
 
 ### 4. Commit Changes
 
@@ -32,6 +32,8 @@ Once you're ready, click **"Merge pull request"** and confirm. The GitHub Action
 - Process the minutes file
 - Generate the minutes page
 - Update the website
+
+Uploading minutes for a date that already has a meeting (e.g. a correction) will regenerate the converted file and update that meeting instead of creating a duplicate.
 
 ## That's It
 
